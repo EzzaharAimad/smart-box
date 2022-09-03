@@ -1,0 +1,51 @@
+<div class="card my-5">
+  <div class="card-body">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        [(ngModel)]="filterTerm"
+      />
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id Transaction</th>
+          <th scope="col">Indicator</th>
+          <th scope="col">Merchant Number</th>
+          <th scope="col">Sequence Number</th>
+          <th scope="col">Outlet Number</th>
+          <th scope="col">Bag Number</th>
+          <th scope="col">Transmission Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Error</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let message of messages | filter: filterTerm">
+          <td>{{ message.idTransaction }}</td>
+          <td>{{ message.indicator }}</td>
+          <td>{{ message.merchantNumber }}</td>
+          <td>{{ message.sequenceNumber }}</td>
+          <td>{{ message.outletNumber }}</td>
+          <td>{{ message.bagNumber }}</td>
+          <td>
+            {{ this.parseDate(message.transmissionDate) }}
+          </td>
+          <td>{{ message.status }}</td>
+          <td>{{ message.error }}</td>
+          <!-- <td>
+            <button
+              (click)="deleteMessage(message.idTransaction)"
+              class="btn btn-primary"
+            >
+              <i class="fa fa-futboll-0">Delete</i>
+            </button>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="reload()">Refresh</button>
+  </div>
+</div>
